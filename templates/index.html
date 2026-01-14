@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Free OCR Converter - PDF & Image to Text" />
+    <link rel="manifest" href="/static/site.webmanifest" />
+    <title>Free OCR Converter - PDF & Image to Text</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 Free OCR Converter</h1>
+            <p class="subtitle">Convert scanned PDFs and images to editable documents</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <!-- File Upload -->
+                     <div class ="upload-area" id="uploadArea">
+                        <input type="file" id="fileInput" name="files" multiple accept=".pdf,.png,.jpg,.jpeg,.tiff,.bmp" hidden>
+                        <div class="upload-content">
+                            <div class="upload-icon">📤</div>
+                            <p class="upload-text">Drag & drop files here or <span class="browse-link">browse</span></p>
+                            <p class="upload-hint">Supports: PDF, PNG, JPG, JPEG, TIFF, BMP (Max 50 pages total, 50MB per file)</p>
+                        </div>
+                    </div>
+
+                    <!-- Selected Files Display -->
+                    <div id="selectedFiles" class="selected-files"></div>
+
+                    <!-- Output Format Selection -->
+                    <div class="format-section">
+                        <label class="section-label">Output Format:</label>
+                        <div class="format-options">
+                            <label class="radio-option">
+                                <input type="radio" name="format" value="txt" checked>
+                                <span class="radio-label">
+                                    <strong>TXT</strong>
+                                    <small>Clean text with paragraphs</small>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="format" value="docx">
+                                <span class="radio-label">
+                                    <strong>DOCX</strong>
+                                    <small>Word document with formatting</small>
+                                </span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="format" value="xlsx">
+                                <span class="radio-label">
+                                    <strong>XLSX</strong>
+                                    <small>Excel spreadsheet with tables</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Language Selection -->
+                    <div class="language-section">
+                        <label class="section-label" for="languageSelect">OCR Language:</label>
+                        <select id="languageSelect" name="language" class="language-select">
+                            <option value="eng" selected>English</option>
+                            <option value="spa">Spanish</option>
+                            <option value="fra">French</option>
+                            <option value="deu">German</option>
+                            <option value="ita">Italian</option>
+                            <option value="por">Portuguese</option>
+                            <option value="rus">Russian</option>
+                            <option value="chi_sim">Chinese (Simplified)</option>
+                            <option value="jpn">Japanese</option>
+                            <option value="ara">Arabic</option>
+                            <option value="hin">Hindi</option>
+                        </select>
+                        <p class="language-hint">💡 Make sure the correct language is installed in Tesseract</p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Convert Files</span>
+                        <span class="btn-loader" style="display: none;">
+                            <div class="spinner"></div>
+                            Processing...
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section" style="display: none;">
+                <h2>📥 Download Results</h2>
+                <div id="resultsContainer"></div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>🔒 Your files are processed securely and automatically deleted after 1 hour</p>
+            <p class="footer-note">Powered by Tesseract OCR • Free & Open Source </p>
+            <p class="footer-credit">Developed by Mike Sanga</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+        
+        
