@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+ocr_env/
+
+# Environment & secrets
+.env
+
+# Logs
+*.log
+app.log
+
+# Runtime data
+uploads/
+outputs/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
